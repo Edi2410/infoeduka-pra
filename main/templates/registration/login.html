@@ -1,0 +1,76 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<style>
+  body,
+  html {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  form {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 15px;
+    padding: 40px;
+    padding-top: 0px;
+    align-items: center;
+    box-shadow: 15px 15px 42px -12px rgba(115, 115, 115, 1);
+  }
+
+  #logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 32px;
+    height: 100px;
+    background: var(--custombg);
+    position: relative;
+    border-radius: 15px;
+    top: -40px;
+    width: 340px;
+  }
+  input {
+    margin: 0 0 20px;
+    padding: 10px 15px !important;
+  }
+  label {
+    display: block;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  #authors {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    color: #555;
+    letter-spacing: 1px;
+  }
+  #error {
+    color: red;
+  }
+</style>
+<form method="post">
+  {% csrf_token %}
+  <div id="logo">INFOEDUKA</div>
+  <label>Email:</label>
+  <input type="text" name="username">
+  <label>Lozinka:</label>
+  <input type="password" name="password">
+  {% if form.errors %}
+    <label id="error">Korisničko ime ili lozinka nisu ispravni!</label>
+  {% endif %}
+  <button class="cool-button">PRIJAVI SE</button>
+</form>
+<div id="authors">Izradili: Matej Galić, Edi Graovac, Ante Prskalo, Kristijan	Rosandić | 2023</div>
+{% endblock content %}

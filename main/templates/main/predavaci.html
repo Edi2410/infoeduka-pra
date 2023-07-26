@@ -1,0 +1,29 @@
+{% extends 'main/base.html' %}
+{% block content %}
+<div class="list-container">
+  {% if not predavaci %}
+  <div class="empty-list">Nema upisanih predavača.</div>
+  {% endif %}
+
+  {% if user.is_staff%}
+  <a href="predavaci/unesi" class="cool-button list-button">Unesi predavača</a>
+  {% endif %}
+
+  {% for predavac in predavaci %}
+  <div class="list-item">
+    <div class="item-title"> {{ predavac.first_name }} {{ predavac.last_name }}</div><br>
+    Email: {{ predavac.email }}
+    {% if user.is_staff%}
+    <div class="item-buttons-container">
+      <a href="predavaci/uredi/{{predavac.id}}">Uredi predavača</a>
+      <a
+        href="predavaci/obrisi/{{predavac.id}}"
+        onClick="return confirm('Potvrdi brisanje obavijesti?')"
+        >Obriši predavača</a
+      >
+    </div>
+    {% endif %}
+  </div>
+{% endfor %}
+
+{% endblock content %}
